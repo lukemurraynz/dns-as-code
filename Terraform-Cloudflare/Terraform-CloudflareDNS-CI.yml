@@ -1,0 +1,21 @@
+trigger:
+  branches:
+    include:
+    - master
+resources:
+  repositories:
+  - repository: self
+    type: git
+    ref: master
+jobs:
+- job: Job_1
+  displayName: Agent job 1
+  pool:
+    vmImage: ubuntu-16.04
+  steps:
+  - checkout: self
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: Copy all Files'
+    inputs:
+      PathtoPublish: .
+...
